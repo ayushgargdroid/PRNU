@@ -450,8 +450,10 @@ for i in camera_list:
     img_list = os.listdir('./'+i)
     for j in img_list:
         imgs.append(cv2.imread(i+'/'+j))
+        print(imgs[0].shape)
     imgs = np.array(imgs)
-    height,width = imgs.shape[1],imgs.shape[2]
+    print(imgs.shape)
+    height,width = imgs[0].shape[0],imgs[0].shape[1]
     imgs_center = []
     for j in range(imgs.shape[0]):
         imgs_center.append(imgs[j,int(height/2)-256:int(height/2)+256,int(width/2)-256:int(width/2)+256])
