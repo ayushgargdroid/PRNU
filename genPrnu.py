@@ -450,7 +450,10 @@ for i in camera_list:
     img_list = os.listdir('./'+i)
     imgs = np.array([cv2.imread(i+'/'+img_list[0])])
     for j in img_list[1:]:
-        imgs = np.append(imgs,[cv2.imread(i+'/'+j)],axis=0)
+        t = cv2.imread(i+'/'+j)
+        if t.shape[0]==imgs.shape[2]:
+            t = imutils.rotate_bound(t,90)
+        imgs = np.append(imgs,[t],axis=0)
     print(imgs.shape)
     height,width = imgs.shape[1],imgs.shape[2]
     imgs_center = np.array([imgs[0,int(height/2)-256:int(height/2)+256,int(width/2)-256:int(width/2)+256]])
