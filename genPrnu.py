@@ -451,14 +451,17 @@ def generate_prnu(i):
     imgs = np.array([cv2.imread(i+'/'+img_list[0])])
     for j in img_list[1:]:
         t = cv2.imread(i+'/'+j)
+        if t.shape[0]==imgs.shape[2] or t.shape[0]==imgs.shape[1]:
+            pass
+        else:
+            continue
         if t.shape[0]==imgs.shape[2]:
             t = imutils.rotate_bound(t,90)
         imgs = np.append(imgs,[t],axis=0)
-    print(imgs.shape)
     height,width = imgs.shape[1],imgs.shape[2]
     imgs_center = np.array([imgs[0,int(height/2)-256:int(height/2)+256,int(width/2)-256:int(width/2)+256]])
     for j in range(imgs.shape[0]-1):
-        imgs_center = np.append([imgs_center,imgs[j+1,int(height/2)-256:int(height/2)+256,int(width/2)-256:int(width/2)+256]],axis=0)
+        imgs_center = np.append(imgs_center,[imgs[j+1,int(height/2)-256:int(height/2)+256,int(width/2)-256:int(width/2)+256]],axis=0)
     fp = getFingerprintUtil(imgs_center)
     np.save(i+str(0),fp)
     imgs_center = np.array([imgs[0,int(height/2)+256:int(height/2)+256+512,int(width/2)-256:int(width/2)+256]])
@@ -484,5 +487,5 @@ def generate_prnu(i):
 
 os.chdir('data/')
 camera_list = os.listdir(os.curdir)
-pool = multiprocessing.Pool(processes=4)
+pool = multiprocessing.Pool(processes=3)
 pool.map(generate_prnu,camera_list)
