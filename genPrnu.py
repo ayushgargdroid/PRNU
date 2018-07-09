@@ -443,6 +443,8 @@ def getProjection(arr,random_arr):
 
 
 def generate_prnu(i):
+    if '.npy' in i:
+        return
     print(i)
     imgs = []
     img_list = os.listdir('./'+i)
