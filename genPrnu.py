@@ -441,10 +441,8 @@ def getProjection(arr,random_arr):
     proj = np.uint8(proj.flatten())
     return proj
 
-os.chdir('data/')
-camera_list = os.listdir(os.curdir)
 
-for i in camera_list:
+def generate_prnu(i):
     print(i)
     imgs = []
     img_list = os.listdir('./'+i)
@@ -481,3 +479,8 @@ for i in camera_list:
         imgs_center = np.append(imgs_center,[imgs[j,int(height/2)-256:int(height/2)+256,int(width/2)-256-512:int(width/2)-256]],axis=0)
     fp = getFingerprintUtil(imgs_center)
     np.save(i+str(4),fp)
+
+os.chdir('data/')
+camera_list = os.listdir(os.curdir)
+pool = multiprocessing.Pool(processes=4)
+pool.map(generate_prnu,camera_list)
