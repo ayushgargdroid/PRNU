@@ -1,16 +1,19 @@
 import os
 import cv2
+import imutils
 import numpy as np
 import requests
 import multiprocessing
 import shutil
 
 def saveData(i):
+    print(i)
     img_list = np.array(os.listdir(os.curdir+'/'+i))
-    rand = np.random.randint(low=0,max=len(imgs_list)-1,size=5)
+    rand = np.random.randint(low=0,high=len(img_list)-1,size=5)
     img_list = img_list[rand]
     imgs = np.array([cv2.imread(i+'/'+img_list[0])])
     for j in img_list[1:]:
+        print(i+'/'+j)
         t = cv2.imread(i+'/'+j)
         if t.shape[0]==imgs.shape[2] or t.shape[0]==imgs.shape[1]:
             pass
@@ -25,7 +28,8 @@ def saveData(i):
         imgs_center = np.append(imgs_center,[imgs[j+1,int(height/2)-128:int(height/2)+128,int(width/2)-128:int(width/2)+128]],axis=0)
         cv2.imwrite(i+str(j)+'.jpg',imgs_center)
 
-os.chdir('data/')
-camera_list = os.chdir(os.curdir)
+os.chdir('./data/')
+camera_list = os.listdir(os.curdir)
+camera_list.remove('prnu')
 pool = multiprocessing.Pool(processes=4)
 pool.map(saveData,camera_list)
