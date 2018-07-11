@@ -198,7 +198,6 @@ def noiseExtractFromImg(img,sigma):
     for j in range(3):
         noise[:,:,j] = noiseExtract(img[:,:,j],qmf,sigma,L)
     noise = noise.astype(np.float32)
-    noise = cv2.cvtColor(noise,cv2.COLOR_BGR2GRAY)
     noise = zeroMeanTotal(noise)
     return noise
 
@@ -258,7 +257,7 @@ def getFingerprint(imgs):
     RP = cv2.merge(RP)
     RP = zeroMeanTotal(RP)
     RP = RP.astype(np.float32)
-    return np.around(cv2.cvtColor(RP,cv2.COLOR_RGB2GRAY),4)
+    return np.around(RP,4)
 
 def getCorr(X,Y):
     X = np.subtract(X,np.mean(X))
@@ -403,7 +402,7 @@ def highestPCE(fingerprint,imgs,ino,j):
 def getKorus(fp,img):
     img = np.uint8(img)
     img_noise = noiseExtractFromImg(img,3)
-    fp = fp * cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+    fp = fp * img
     fp = fp - np.mean(fp)
     img_noise = img_noise - np.mean(img_noise)
     n1 = np.sqrt(np.sum(img_noise*img_noise))
