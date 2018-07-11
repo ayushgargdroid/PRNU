@@ -463,24 +463,24 @@ def generate_prnu(i):
         imgs_center = np.append(imgs_center,[imgs[j+1,int(height/2)-128:int(height/2)+128,int(width/2)-128:int(width/2)+128]],axis=0)
     fp = getFingerprintUtil(imgs_center)
     np.save(i+str(0),fp)
-    imgs_center = np.array([imgs[0,int(height/2)+128:int(height/2)+128+512,int(width/2)-128:int(width/2)+128]])
+    imgs_center = np.array([imgs[0,int(height/2)+128:int(height/2)+128+256,int(width/2)-128:int(width/2)+128]])
     for j in range(imgs.shape[0]):
-        imgs_center = np.append(imgs_center,[imgs[j,int(height/2)+128:int(height/2)+128+512,int(width/2)-128:int(width/2)+128]],axis=0)
+        imgs_center = np.append(imgs_center,[imgs[j,int(height/2)+128:int(height/2)+128+256,int(width/2)-128:int(width/2)+128]],axis=0)
     fp = getFingerprintUtil(imgs_center)
     np.save(i+str(1),fp)
-    imgs_center = np.array([imgs[0,int(height/2)-128-512:int(height/2)-128,int(width/2)-128:int(width/2)+128]])
+    imgs_center = np.array([imgs[0,int(height/2)-128-256:int(height/2)-128,int(width/2)-128:int(width/2)+128]])
     for j in range(imgs.shape[0]):
-        imgs_center = np.append(imgs_center,[imgs[j,int(height/2)-128-512:int(height/2)-128,int(width/2)-128:int(width/2)+128]],axis=0)
+        imgs_center = np.append(imgs_center,[imgs[j,int(height/2)-128-256:int(height/2)-128,int(width/2)-128:int(width/2)+128]],axis=0)
     fp = getFingerprintUtil(imgs_center)
     np.save(i+str(2),fp)
-    imgs_center = np.array([imgs[0,int(height/2)-128:int(height/2)+128,int(width/2)+128:int(width/2)+128+512]])
+    imgs_center = np.array([imgs[0,int(height/2)-128:int(height/2)+128,int(width/2)+128:int(width/2)+128+256]])
     for j in range(imgs.shape[0]):
-        imgs_center = np.append(imgs_center,[imgs[j,int(height/2)-128:int(height/2)+128,int(width/2)+128:int(width/2)+128+512]],axis=0)
+        imgs_center = np.append(imgs_center,[imgs[j,int(height/2)-128:int(height/2)+128,int(width/2)+128:int(width/2)+128+256]],axis=0)
     fp = getFingerprintUtil(imgs_center)
     np.save(i+str(3),fp)
-    imgs_center = np.array([imgs[0,int(height/2)-128:int(height/2)+128,int(width/2)-128-512:int(width/2)-128]])
+    imgs_center = np.array([imgs[0,int(height/2)-128:int(height/2)+128,int(width/2)-128-256:int(width/2)-128]])
     for j in range(imgs.shape[0]):
-        imgs_center = np.append(imgs_center,[imgs[j,int(height/2)-128:int(height/2)+128,int(width/2)-128-512:int(width/2)-128]],axis=0)
+        imgs_center = np.append(imgs_center,[imgs[j,int(height/2)-128:int(height/2)+128,int(width/2)-128-256:int(width/2)-128]],axis=0)
     fp = getFingerprintUtil(imgs_center)
     np.save(i+str(4),fp)
 
