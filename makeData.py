@@ -26,7 +26,8 @@ def saveData(i):
     imgs_center = np.array([imgs[0,int(height/2)-128:int(height/2)+128,int(width/2)-128:int(width/2)+128]])
     for j in range(imgs.shape[0]-1):
         imgs_center = np.append(imgs_center,[imgs[j+1,int(height/2)-128:int(height/2)+128,int(width/2)-128:int(width/2)+128]],axis=0)
-        cv2.imwrite(i+str(j)+'.jpg',imgs_center)
+    for j in range(imgs_center.shape[0])
+        cv2.imwrite(i+str(j)+'.jpg',imgs_center[j])
 
 os.chdir('./data/')
 camera_list = os.listdir(os.curdir)
